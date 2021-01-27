@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+    - postgres_volume:/var/lib/postgresql/data
+
+  web_simbirsoft:
+    image: web_simbirsoft_image
+    container_name: web_simbirsoft_container
+    build: news_portal/
+    command: bash -c "while !</dev/tcp/db/5432; do sleep 1; done;
+      python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_volume:
