@@ -6,6 +6,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('profiles.urls')),
     path('api/', include('news.urls')),
 
     path('auth/', include('djoser.urls')),

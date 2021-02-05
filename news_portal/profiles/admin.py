@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 @admin.register(User)
 class UserAdmin(UserAdmin):
-    list_display = ['username', 'email', 'is_banned', 'is_staff']
+    list_display = ['id', 'username', 'email', 'is_banned', 'is_staff']
     list_editable = ['is_banned', 'is_staff']
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
