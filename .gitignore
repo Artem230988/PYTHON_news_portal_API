@@ -4,3 +4,4 @@ venv/
 *.pyc
 __pycache__/
 .idea/
+/news_portal/db.sqlite3
